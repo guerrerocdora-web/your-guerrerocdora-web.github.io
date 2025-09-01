@@ -230,7 +230,7 @@
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
                 <a href="#contact" class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition duration-300 transform hover:scale-105">Send me a message</a>
-                <a href="#contact" class="inline-block bg-transparent border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-600 hover:text-white transition duration-300">Free Consultation 💬</a>
+                <button onclick="openConsultationModal()" class="inline-block bg-transparent border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-600 hover:text-white transition duration-300">Free Consultation 💬</button>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
@@ -263,10 +263,12 @@
                     <p class="text-sm text-gray-500 mb-4">Demo Form: This is a sample contact form. In a real implementation, this would connect to a backend service to send emails.</p>
                 </div>
                 
-                <form class="space-y-6" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <form class="space-y-6" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
                     <!-- Hidden fields for Netlify -->
                     <input type="hidden" name="form-name" value="contact" />
-                    <input type="hidden" name="bot-field" />
+                    <p class="hidden">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
                     
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
@@ -307,6 +309,66 @@
             </div>
         </div>
     </section>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
+            <button onclick="closeConsultationModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+            
+            <div class="text-center mb-6">
+                <div class="text-4xl mb-4">📅</div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Schedule Your Free Consultation</h3>
+                <p class="text-gray-600">Choose your preferred time window and I'll reach out to confirm!</p>
+            </div>
+            
+            <form class="space-y-4" name="consultation" method="POST" data-netlify="true" data-netlify-honeypot="bot-field-consultation">
+                <input type="hidden" name="form-name" value="consultation" />
+                <p class="hidden">
+                    <label>Don't fill this out if you're human: <input name="bot-field-consultation" /></label>
+                </p>
+                
+                <div>
+                    <label for="consultation-name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="consultation-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200">
+                </div>
+                
+                <div>
+                    <label for="consultation-email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="consultation-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200">
+                </div>
+                
+                <div>
+                    <label for="consultation-phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <input type="tel" id="consultation-phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200">
+                </div>
+                
+                <div>
+                    <label for="preferred-time" class="block text-sm font-medium text-gray-700 mb-2">Preferred Time Window</label>
+                    <select id="preferred-time" name="preferred-time" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200">
+                        <option value="">Select your preferred time</option>
+                        <option value="morning-weekday">Weekday Morning (9 AM - 12 PM)</option>
+                        <option value="afternoon-weekday">Weekday Afternoon (12 PM - 5 PM)</option>
+                        <option value="evening-weekday">Weekday Evening (5 PM - 8 PM)</option>
+                        <option value="morning-weekend">Weekend Morning (9 AM - 12 PM)</option>
+                        <option value="afternoon-weekend">Weekend Afternoon (12 PM - 5 PM)</option>
+                        <option value="evening-weekend">Weekend Evening (5 PM - 8 PM)</option>
+                        <option value="flexible">I'm flexible - any time works!</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="consultation-message" class="block text-sm font-medium text-gray-700 mb-2">Tell me about your business needs (optional)</label>
+                    <textarea id="consultation-message" name="message" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200" placeholder="What would you like to discuss during our consultation?"></textarea>
+                </div>
+                
+                <div class="text-center pt-4">
+                    <button type="submit" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition duration-300 transform hover:scale-105">
+                        Book My Free Consultation 🎯
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
@@ -375,6 +437,71 @@
             }
         });
 
+        // Modal functions
+        function openConsultationModal() {
+            document.getElementById('consultationModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeConsultationModal() {
+            document.getElementById('consultationModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('consultationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeConsultationModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeConsultationModal();
+            }
+        });
+
+        // Consultation form submission handling
+        const consultationForm = document.querySelector('form[name="consultation"]');
+        if (consultationForm) {
+            consultationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                
+                // Submit to Netlify
+                fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(() => {
+                    // Show success message in modal
+                    const modalContent = document.querySelector('#consultationModal .bg-white');
+                    modalContent.innerHTML = `
+                        <button onclick="closeConsultationModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                        <div class="text-center py-8">
+                            <div class="text-6xl mb-6">🎉</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Consultation Booked!</h3>
+                            <p class="text-lg text-gray-600 mb-6">Thank you for booking your free consultation! I'll reach out within 24 hours to confirm your preferred time slot.</p>
+                            <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-lg">
+                                <p class="text-purple-800 font-medium">I'm excited to learn about your business and discuss how I can help you succeed! 💜</p>
+                            </div>
+                            <button onclick="closeConsultationModal()" class="mt-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition duration-300">
+                                Close
+                            </button>
+                        </div>
+                    `;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('There was an error booking your consultation. Please try again or email me directly at doradoesitva@outlook.com');
+                });
+            });
+        }
+
         // Contact form submission handling
         const contactForm = document.querySelector('form[name="contact"]');
         if (contactForm) {
@@ -430,5 +557,5 @@
             observer.observe(el);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9782f043d222e672',t:'MTc1NjcxMDUyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9782f864e475e763',t:'MTc1NjcxMDg2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
