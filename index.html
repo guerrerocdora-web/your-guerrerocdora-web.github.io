@@ -375,6 +375,42 @@
             }
         });
 
+        // Contact form submission handling
+        const contactForm = document.querySelector('form[name="contact"]');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                
+                // Submit to Netlify
+                fetch('/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(() => {
+                    // Show success message
+                    const formContainer = document.querySelector('#contact .bg-white');
+                    formContainer.innerHTML = `
+                        <div class="text-center py-12">
+                            <div class="text-6xl mb-6">🎉</div>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">Thank You for Your Submission!</h3>
+                            <p class="text-lg text-gray-600 mb-6">I will review your message and contact you within 24 hours.</p>
+                            <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-lg">
+                                <p class="text-purple-800 font-medium">I'm excited to learn more about your business and how I can help you succeed! 💜</p>
+                            </div>
+                        </div>
+                    `;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('There was an error submitting your form. Please try again or email me directly at doradoesitva@outlook.com');
+                });
+            });
+        }
+
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
@@ -394,5 +430,5 @@
             observer.observe(el);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9782e72906111f48',t:'MTc1NjcxMDE1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9782f043d222e672',t:'MTc1NjcxMDUyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
