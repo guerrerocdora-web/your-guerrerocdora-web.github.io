@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dora Does It VA - Virtual Assistant Services</title>
+    <title>Dora Does It - Your Personal Virtual Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
+        .gradient-bg {
+            background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
         }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+        .notary-gradient {
+            background: linear-gradient(135deg, #A855F7 0%, #F472B6 100%);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .card-hover {
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         
         .pulse-button {
@@ -39,42 +41,50 @@
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="font-sans">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg fixed w-full z-50">
+    <nav class="fixed w-full z-40 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <span class="text-2xl font-bold gradient-bg bg-clip-text text-transparent">Dora Does It VA</span>
-                    </div>
+                    <h1 class="text-2xl font-bold text-white">Dora Does It</h1>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition duration-300">Home</a>
-                    <a href="#services" class="text-gray-700 hover:text-purple-600 transition duration-300">Services</a>
-                    <a href="#about" class="text-gray-700 hover:text-purple-600 transition duration-300">About</a>
-                    <a href="#contact" class="text-gray-700 hover:text-purple-600 transition duration-300">Contact</a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-purple-200 transition duration-300">Home</a>
+                    <a href="#services" class="text-white hover:text-purple-200 transition duration-300">VA Services</a>
+                    <a href="#notary" class="text-white hover:text-purple-200 transition duration-300">Notary Services</a>
+                    <a href="#about" class="text-white hover:text-purple-200 transition duration-300">About</a>
+                    <a href="#contact" class="text-white hover:text-purple-200 transition duration-300">Contact</a>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button class="mobile-menu-button text-gray-700 hover:text-purple-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="mobile-menu-button text-white hover:text-purple-200 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
+        
         <!-- Mobile menu -->
         <div class="mobile-menu hidden md:hidden bg-white border-t">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Home</a>
-                <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Services</a>
+                <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-purple-600">VA Services</a>
+                <a href="#notary" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Notary Services</a>
                 <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-purple-600">About</a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-purple-600">Contact</a>
             </div>
@@ -87,8 +97,8 @@
             <h1 class="text-5xl md:text-7xl font-bold mb-6">
                 Hi, I'm Dora! 👋
             </h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90">Your Personal Virtual Assistant</p>
-            <p class="text-lg mb-12 max-w-2xl mx-auto opacity-80">Let me help you reclaim your time and grow your business! With 9 years of experience, I'm here to handle the tasks that keep you from focusing on what you love most.</p>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Virtual Assistant & Mobile Notary Services</p>
+            <p class="text-lg mb-12 max-w-2xl mx-auto opacity-80">Let me help you reclaim your time and grow your business! With 9 years of experience, I offer both virtual assistant services and mobile notary services to meet all your professional needs.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#services" class="inline-block bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300 pulse-button">See What I Can Do</a>
                 <a href="#contact" class="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition duration-300">Let's Chat!</a>
@@ -100,7 +110,7 @@
     <section id="services" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">How I Can Help You ✨</h2>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Virtual Assistant Services ✨</h2>
                 <p class="text-xl text-gray-600 max-w-2xl mx-auto">Here are some of the ways I love helping busy entrepreneurs and business owners like you!</p>
             </div>
             
@@ -192,13 +202,207 @@
         </div>
     </section>
 
+    <!-- Notary Services Section -->
+    <section id="notary" class="py-20 notary-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Mobile Notary Services 📋</h2>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto">Professional notary services that come to you! I'll travel to your location for convenient, secure document notarization at your home, office, or any location that works for you.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Notary Service 1 -->
+                <div class="bg-white p-8 rounded-xl card-hover border-l-4 border-purple-500">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <div class="text-3xl">🏠</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Real Estate Documents</h3>
+                    <p class="text-gray-600 mb-4">From home purchases to refinancing, I'll ensure all your real estate documents are properly notarized with precision and care.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Mortgage documents</li>
+                        <li>• Refinancing paperwork</li>
+                        <li>• Property transfers</li>
+                        <li>• Loan modifications</li>
+                    </ul>
+                </div>
+
+                <!-- Notary Service 2 -->
+                <div class="bg-white p-8 rounded-xl card-hover border-l-4 border-pink-500">
+                    <div class="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mb-6">
+                        <div class="text-3xl">⚖️</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Legal Documents</h3>
+                    <p class="text-gray-600 mb-4">Important legal documents require proper notarization. I'll handle your legal paperwork with the utmost professionalism and confidentiality.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Wills & trusts</li>
+                        <li>• Power of attorney</li>
+                        <li>• Affidavits</li>
+                        <li>• Contracts & agreements</li>
+                    </ul>
+                </div>
+
+                <!-- Notary Service 3 -->
+                <div class="bg-white p-8 rounded-xl card-hover border-l-4 border-purple-600">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <div class="text-3xl">💼</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Business Documents</h3>
+                    <p class="text-gray-600 mb-4">Keep your business running smoothly with professional notarization of all your important business documents and agreements.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Business contracts</li>
+                        <li>• Partnership agreements</li>
+                        <li>• Corporate resolutions</li>
+                        <li>• Employment documents</li>
+                    </ul>
+                </div>
+
+                <!-- Notary Service 4 -->
+                <div class="bg-white p-8 rounded-xl card-hover border-l-4 border-pink-600">
+                    <div class="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mb-6">
+                        <div class="text-3xl">📄</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Personal Documents</h3>
+                    <p class="text-gray-600 mb-4">Life's important moments often require notarized documents. I'm here to help with all your personal notarization needs.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Travel consent forms</li>
+                        <li>• Medical directives</li>
+                        <li>• School enrollment forms</li>
+                        <li>• Identity verification</li>
+                    </ul>
+                </div>
+
+                <!-- Notary Service 5 -->
+                <div class="bg-white p-8 rounded-xl card-hover border-l-4 border-purple-400">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <div class="text-3xl">🚗</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Mobile Convenience</h3>
+                    <p class="text-gray-600 mb-4">I come to you! Whether it's your home, office, hospital, or coffee shop - I'll meet you wherever is most convenient.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Home visits</li>
+                        <li>• Office appointments</li>
+                        <li>• Hospital & care facilities</li>
+                        <li>• Emergency services available</li>
+                    </ul>
+                </div>
+
+                <!-- Notary Service 6 -->
+                <div class="bg-white p-8 rounded-xl card-hover border-l-4 border-pink-400">
+                    <div class="w-16 h-16 bg-pink-100 rounded-lg flex items-center justify-center mb-6">
+                        <div class="text-3xl">🔐</div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Secure & Professional</h3>
+                    <p class="text-gray-600 mb-4">Your documents and privacy are my top priority. I maintain the highest standards of security and professionalism.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Licensed & bonded</li>
+                        <li>• Background checked</li>
+                        <li>• Confidential service</li>
+                        <li>• Professional equipment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Notary Info Box -->
+            <div class="mt-16 bg-white rounded-2xl shadow-lg p-8 border-t-4 border-purple-500">
+                <div class="text-center">
+                    <div class="text-4xl mb-4">🔒</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Certified & Bonded Notary Public</h3>
+                    <p class="text-lg text-gray-600 mb-6">I am a state-certified notary public with full bonding and insurance. All notarizations are performed with the highest standards of security and legal compliance.</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mt-8">
+                        <div class="text-center">
+                            <div class="text-2xl mb-2">📜</div>
+                            <h4 class="font-semibold text-gray-900">State Certified</h4>
+                            <p class="text-sm text-gray-600">Licensed notary public</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl mb-2">🛡️</div>
+                            <h4 class="font-semibold text-gray-900">Bonded & Insured</h4>
+                            <p class="text-sm text-gray-600">Full protection coverage</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl mb-2">⏰</div>
+                            <h4 class="font-semibold text-gray-900">Flexible Hours</h4>
+                            <p class="text-sm text-gray-600">Available when you need me</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Choose Your Service Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Service 🎯</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Need virtual assistant help, notary services, or both? I'm here to support you however you need!</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- VA Only -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl card-hover border-2 border-purple-200">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div class="text-4xl">💻</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Virtual Assistant Only</h3>
+                        <p class="text-gray-600 mb-6">Focus on administrative tasks, email management, and business support</p>
+                        <a href="#contact" class="inline-block bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-purple-800 transition duration-300">
+                            Get VA Support
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Notary Only -->
+                <div class="bg-gradient-to-br from-pink-50 to-purple-50 p-8 rounded-2xl card-hover border-2 border-pink-200">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div class="text-4xl">📋</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Notary Services Only</h3>
+                        <p class="text-gray-600 mb-6">Professional mobile notarization for all your document needs</p>
+                        <a href="#contact" class="inline-block bg-gradient-to-r from-pink-600 to-pink-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-pink-700 hover:to-pink-800 transition duration-300">
+                            Book Notary Service
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Complete Package -->
+                <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-8 rounded-2xl card-hover border-2 border-purple-300 relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Popular
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div class="text-4xl">🌟</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Complete Package</h3>
+                        <p class="text-gray-600 mb-6">Get both VA and notary services for comprehensive business support</p>
+                        <a href="#contact" class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition duration-300 transform hover:scale-105">
+                            Get Full Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="py-20 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl font-bold text-gray-900 mb-6">A Little About Me 💜</h2>
             <p class="text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
-                Hi there! I'm Dora, and I absolutely love what I do. With 9 years of executive administrative experience, I've learned that every business owner deserves to focus on their passion, not paperwork. I'm here to be your reliable partner, handling the details so you can dream bigger!
+                Hi there! I'm Dora, and I've been passionate about organization and helping others succeed for as long as I can remember. Over my 9 years in executive administration, I've discovered that I genuinely thrive when I'm solving problems and making life easier for busy professionals. Whether it's streamlining workflows or ensuring important documents are properly notarized, I find joy in the details that others might find overwhelming. When I'm not working, you'll find me reading, exploring new coffee shops, or planning my next adventure!
             </p>
+            
+            <!-- Mission Statement -->
+            <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-8 mb-12 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">My Mission 🎯</h3>
+                <p class="text-lg text-gray-700 leading-relaxed italic">
+                    "My mission is to empower busy entrepreneurs and business owners by taking care of the details that matter, so they can focus on what they love most. Through reliable virtual assistant services and convenient mobile notary solutions, I'm here to help your business thrive while giving you back your most precious resource - time."
+                </p>
+            </div>
             
             <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <div class="bg-white p-6 rounded-xl shadow-sm">
@@ -285,12 +489,21 @@
                         <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Service Needed</label>
                         <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200">
                             <option value="">Select a service</option>
-                            <option value="email-management">Email Management</option>
-                            <option value="data-entry">Data Entry & Research</option>
-                            <option value="social-media">Social Media Management</option>
-                            <option value="customer-support">Customer Support</option>
-                            <option value="content-creation">Content Creation</option>
-                            <option value="administrative">Administrative Tasks</option>
+                            <optgroup label="Virtual Assistant Services">
+                                <option value="email-management">Email Management</option>
+                                <option value="data-entry">Data Entry & Research</option>
+                                <option value="social-media">Social Media Management</option>
+                                <option value="customer-support">Customer Support</option>
+                                <option value="content-creation">Content Creation</option>
+                                <option value="administrative">Administrative Tasks</option>
+                            </optgroup>
+                            <optgroup label="Notary Services">
+                                <option value="document-notarization">Document Notarization</option>
+                                <option value="real-estate-docs">Real Estate Documents</option>
+                                <option value="mobile-notary">Mobile Notary Services</option>
+                                <option value="business-docs">Business Documents</option>
+                                <option value="legal-docs">Legal & Court Documents</option>
+                            </optgroup>
                             <option value="other">Other</option>
                         </select>
                     </div>
@@ -382,10 +595,10 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Services</h4>
                     <ul class="space-y-2 text-gray-300">
+                        <li><a href="#services" class="hover:text-white transition duration-200">Virtual Assistant</a></li>
+                        <li><a href="#notary" class="hover:text-white transition duration-200">Notary Services</a></li>
                         <li><a href="#services" class="hover:text-white transition duration-200">Email Management</a></li>
-                        <li><a href="#services" class="hover:text-white transition duration-200">Data Entry & Research</a></li>
-                        <li><a href="#services" class="hover:text-white transition duration-200">Social Media Management</a></li>
-                        <li><a href="#services" class="hover:text-white transition duration-200">Customer Support</a></li>
+                        <li><a href="#services" class="hover:text-white transition duration-200">Document Notarization</a></li>
                     </ul>
                 </div>
                 
@@ -557,5 +770,5 @@
             observer.observe(el);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9782f864e475e763',t:'MTc1NjcxMDg2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978f0b08228d5387',t:'MTc1NjgzNzQ1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
